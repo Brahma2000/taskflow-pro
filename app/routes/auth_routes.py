@@ -9,7 +9,7 @@ auth_bp = Blueprint("auth", __name__)
 def register():
   data = request.get_json()
 
-  user = User(username=data["username'])
+  user = User(username=data["username"])
   user.set_password(data["password"])
 
   db.session.add(user)
