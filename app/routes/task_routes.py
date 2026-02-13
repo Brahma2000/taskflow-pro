@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, get_jwt_identify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.extensions import db
 from app.models.task import Task
 
@@ -8,7 +8,7 @@ task_bp = Blueprint("tasks", __name__)
 @task_bp.route("/", methods=["GET"])
 @jwt_required()
 def get_tasks():
-  user_id = get_jwt_identify()
+  user_id = get_jwt_identity()
 
   tasks = Task.query.filter_by(user_id=user_id).all()
 
